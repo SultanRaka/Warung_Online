@@ -90,7 +90,7 @@ cetakTotal(){
 
   Future<List> getData() async{
     var response = await http.get(
-        Uri.encodeFull("http://192.168.2.40/warung_makan/getmenu.php"),
+        Uri.encodeFull("http://[YOUR IP ADDRESS HERE]/warung_makan/getmenu.php"),
         headers: {"Accept": "application/json"});
 
         var resBody = json.decode(response.body);
