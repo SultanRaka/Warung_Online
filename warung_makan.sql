@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 17, 2019 at 03:38 PM
--- Server version: 10.1.38-MariaDB
--- PHP Version: 7.1.28
+-- Generation Time: Mar 31, 2021 at 05:11 PM
+-- Server version: 10.4.14-MariaDB
+-- PHP Version: 7.4.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -55,10 +54,9 @@ INSERT INTO `menu` (`id`, `nama`, `detil`, `harga`, `url`) VALUES
 --
 
 CREATE TABLE `orderonline` (
-  `id` varchar(4) NOT NULL,
-  `nama` text,
-  `alamat` text,
-  `detil` text,
+  `nama` text DEFAULT NULL,
+  `alamat` text DEFAULT NULL,
+  `detil` text DEFAULT NULL,
   `total` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -66,8 +64,9 @@ CREATE TABLE `orderonline` (
 -- Dumping data for table `orderonline`
 --
 
-INSERT INTO `orderonline` (`id`, `nama`, `alamat`, `detil`, `total`) VALUES
-('', 'Suryadi', 'nomaden', 'Air Mineral 1 pcs \n', 5000);
+INSERT INTO `orderonline` (`nama`, `alamat`, `detil`, `total`) VALUES
+('Suryadi', 'nomaden', 'Air Mineral 1 pcs \n', 5000),
+('Gawd Gura', 'A', 'Air Mineral 3 pcs \n', 15000);
 
 -- --------------------------------------------------------
 
@@ -78,7 +77,7 @@ INSERT INTO `orderonline` (`id`, `nama`, `alamat`, `detil`, `total`) VALUES
 CREATE TABLE `pesanan` (
   `id_pesanan` int(11) NOT NULL,
   `no_meja` varchar(2) DEFAULT NULL,
-  `detil` text,
+  `detil` text DEFAULT NULL,
   `total` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -97,12 +96,6 @@ INSERT INTO `pesanan` (`id_pesanan`, `no_meja`, `detil`, `total`) VALUES
 -- Indexes for table `menu`
 --
 ALTER TABLE `menu`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `orderonline`
---
-ALTER TABLE `orderonline`
   ADD PRIMARY KEY (`id`);
 
 --
