@@ -3,8 +3,6 @@ import 'dart:async';
 import 'package:http/http.dart' as http;
 import 'main.dart' as main;
 
-
-
 class Confirm extends StatelessWidget {
   final orderItem;
   final orderQuantity;
@@ -12,72 +10,71 @@ class Confirm extends StatelessWidget {
   TextEditingController nama = new TextEditingController();
   TextEditingController alamat = new TextEditingController();
   String detil = "";
-  
 
   Confirm({this.orderItem, this.total, this.orderQuantity});
 
-  
-  void addData(){
-    var url = "http://192.168.1.14/warung_makan/post2.php";
+  void addData() {
+    var url = "http://[INSERT YOUR IP ADDRESS HERE]]/warung_makan/post2.php";
 
     http.post(url, body: {
-      "nama" : nama.text,
+      "nama": nama.text,
       "alamat": alamat.text,
-      "detil" : this.detil,
-      "total" : this.total.toString(),
+      "detil": this.detil,
+      "total": this.total.toString(),
     });
   }
 
-  cetakCetak(){
+  cetakCetak() {
     int x = 0;
-    while(x < this.orderItem.length){
-      this.detil = this.detil + ("${this.orderItem[x]} ${this.orderQuantity[x]} pcs \n");    
+    while (x < this.orderItem.length) {
+      this.detil =
+          this.detil + ("${this.orderItem[x]} ${this.orderQuantity[x]} pcs \n");
       x++;
     }
   }
 
   Future<void> invalid(BuildContext context) {
-  return showDialog<void>(
-    context: context,
-    builder: (BuildContext context) {
-      return AlertDialog(
-        title: Text('Invalid'),
-        content: const Text('Pastikan semua form terisi dengan benar!'),
-        actions: <Widget>[
-          FlatButton(
-            child: Text('Ok'),
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-          ),
-        ],
-      );
-    },
-  );
-}
+    return showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Invalid'),
+          content: const Text('Pastikan semua form terisi dengan benar!'),
+          actions: <Widget>[
+            FlatButton(
+              child: Text('Ok'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
 
-Future<void> valid(BuildContext context) {
-  return showDialog<void>(
-    context: context,
-    builder: (BuildContext context) {
-      return AlertDialog(
-        title: Text("Pesanan anda akan segera dikirim!"),
-        content: const Text('Silahkan tunggu'),
-        actions: <Widget>[
-          FlatButton(
-            child: Text('Ok'),
-            onPressed: () {
-              Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => main.Menu()),
-                        );
-            },
-          ),
-        ],
-      );
-    },
-  );
-}
+  Future<void> valid(BuildContext context) {
+    return showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text("Pesanan anda akan segera dikirim!"),
+          content: const Text('Silahkan tunggu'),
+          actions: <Widget>[
+            FlatButton(
+              child: Text('Ok'),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => main.Menu()),
+                );
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -85,14 +82,12 @@ Future<void> valid(BuildContext context) {
         body: Stack(
       children: <Widget>[
         Container(
-          margin: EdgeInsets.only(top: 100, left: 50),
-          child: Row(
-            children: <Widget>[
-              Text("Daftar Pesanan"),
-              
-            ],
-          )
-        ),
+            margin: EdgeInsets.only(top: 100, left: 50),
+            child: Row(
+              children: <Widget>[
+                Text("Daftar Pesanan"),
+              ],
+            )),
         Container(
           margin: EdgeInsets.only(left: 50, top: 110),
           child: new ListView.builder(
@@ -129,29 +124,29 @@ Future<void> valid(BuildContext context) {
                 ));
               }),
         ),
-         Container(
+        Container(
           width: 250,
           margin: EdgeInsets.only(left: 50, top: 300),
           child: Text("Nama"),
-          ),
+        ),
         Container(
           width: 250,
           margin: EdgeInsets.only(left: 50, top: 325),
           child: TextField(
-              controller: nama,
-            ),
+            controller: nama,
           ),
-          Container(
+        ),
+        Container(
           margin: EdgeInsets.only(left: 50, top: 375),
           child: Text("Alamat"),
-          ),
-          Container(
+        ),
+        Container(
           width: 250,
           margin: EdgeInsets.only(left: 50, top: 400),
           child: TextField(
-              controller: alamat,
-            ),
+            controller: alamat,
           ),
+        ),
         Container(
             margin: EdgeInsets.only(left: 50, top: 475),
             child: Column(
@@ -176,13 +171,17 @@ Future<void> valid(BuildContext context) {
                     SizedBox(width: 10),
                     RaisedButton(
                       onPressed: () {
-                        if ((nama.text == null) | (alamat.text == null) |(nama.text == "") | (alamat.text == "") | (orderItem == null)|(total <=0))  {
+                        if ((nama.text == null) |
+                            (alamat.text == null) |
+                            (nama.text == "") |
+                            (alamat.text == "") |
+                            (orderItem == null) |
+                            (total <= 0)) {
                           invalid(context);
-                        } else {  
+                        } else {
                           cetakCetak();
                           addData();
-                          valid(context);                   
-                          
+                          valid(context);
                         }
                       },
                       child: Text("Konfirmasi"),
