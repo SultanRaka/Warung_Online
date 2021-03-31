@@ -14,7 +14,7 @@ class Confirm extends StatelessWidget {
   Confirm({this.orderItem, this.total, this.orderQuantity});
 
   void addData() {
-    var url = "http://[INSERT YOUR IP ADDRESS HERE]]/warung_makan/post2.php";
+    var url = "http://10.0.2.2/warung_makan/post2.php";
 
     http.post(url, body: {
       "nama": nama.text,
