@@ -88,7 +88,7 @@ class _MenuState extends State<Menu> {
 
   Future<List> getData() async {
     var response = await http.get(
-        Uri.encodeFull("http://10.0.2.2/warung_makan/getmenu.php"),
+        Uri.parse("http://10.0.2.2/warung_makan/getmenu.php"),
         headers: {"Accept": "application/json"});
 
     var resBody = json.decode(response.body);
