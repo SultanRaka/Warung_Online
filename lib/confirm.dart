@@ -66,6 +66,31 @@ class Confirm extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          Receipt(detilgan: this.detil, total: this.total)),
+                );
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Future<void> cetakReceipt(BuildContext context) {
+    return showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text("Struk pemesanan"),
+          content: Text((this.detil).toString()),
+          actions: <Widget>[
+            FlatButton(
+              child: Text('Ok'),
+              onPressed: () {
+                Navigator.push(
+                  context,
                   MaterialPageRoute(builder: (context) => main.Menu()),
                 );
               },
@@ -192,5 +217,39 @@ class Confirm extends StatelessWidget {
             )),
       ],
     ));
+  }
+}
+
+class Receipt extends StatelessWidget {
+  final detilgan;
+  final total;
+  Receipt({this.detilgan, this.total});
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Stack(
+        children: [
+          Center(
+              child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text("Ini struknya gan"),
+              Text(this.detilgan),
+              Text("Total: " + (this.total).toString()),
+              RaisedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => main.Menu()),
+                  );
+                },
+                child: Text("Ok"),
+              ),
+            ],
+          )),
+        ],
+      ),
+    );
   }
 }
