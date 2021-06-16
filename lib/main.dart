@@ -18,7 +18,9 @@ class Menu extends StatefulWidget {
 class _MenuState extends State<Menu> {
   List menu;
   List orderedMenu = [];
+  List orderedID = [];
   List orderedQuantity = [];
+  List newStock = [];
   int total;
   List<int> number = [0, 0, 0, 0, 0, 0];
   final contol = TextEditingController();
@@ -44,26 +46,56 @@ class _MenuState extends State<Menu> {
       if (number[0] != 0) {
         orderedMenu.add(menu[0]["nama"].toString());
         orderedQuantity.add(number[0]);
+        int stoklama = int.parse(menu[0]["stock"]);
+        int jumlahpesanan = number[0];
+        int stokBaru = stoklama - jumlahpesanan;
+        newStock.add(stokBaru);
+        orderedID.add(menu[0]["id"].toString());
       }
       if (number[1] != 0) {
         orderedMenu.add(menu[1]["nama"].toString());
         orderedQuantity.add(number[1]);
+        int stoklama = int.parse(menu[1]["stock"]);
+        int jumlahpesanan = number[1];
+        int stokBaru = stoklama - jumlahpesanan;
+        newStock.add(stokBaru);
+        orderedID.add(menu[1]["id"].toString());
       }
       if (number[2] != 0) {
         orderedMenu.add(menu[2]["nama"].toString());
         orderedQuantity.add(number[2]);
+        int stoklama = int.parse(menu[2]["stock"]);
+        int jumlahpesanan = number[2];
+        int stokBaru = stoklama - jumlahpesanan;
+        newStock.add(stokBaru);
+        orderedID.add(menu[2]["id"].toString());
       }
       if (number[3] != 0) {
         orderedMenu.add(menu[3]["nama"].toString());
         orderedQuantity.add(number[3]);
+        int stoklama = int.parse(menu[3]["stock"]);
+        int jumlahpesanan = number[3];
+        int stokBaru = stoklama - jumlahpesanan;
+        newStock.add(stokBaru);
+        orderedID.add(menu[3]["id"].toString());
       }
       if (number[4] != 0) {
         orderedMenu.add(menu[4]["nama"].toString());
         orderedQuantity.add(number[4]);
+        int stoklama = int.parse(menu[4]["stock"]);
+        int jumlahpesanan = number[04];
+        int stokBaru = stoklama - jumlahpesanan;
+        newStock.add(stokBaru);
+        orderedID.add(menu[4]["id"].toString());
       }
       if (number[5] != 0) {
         orderedMenu.add(menu[5]["nama"].toString());
         orderedQuantity.add(number[5]);
+        int stoklama = int.parse(menu[5]["stock"]);
+        int jumlahpesanan = number[5];
+        int stokBaru = stoklama - jumlahpesanan;
+        newStock.add(stokBaru);
+        orderedID.add(menu[5]["id"].toString());
       }
       if ((number[0] == 0) &
           (number[1] == 0) &
@@ -210,6 +242,8 @@ class _MenuState extends State<Menu> {
                           total: total,
                           orderItem: orderedMenu,
                           orderQuantity: orderedQuantity,
+                          orderItemID: orderedID,
+                          orderItemStock: newStock,
                         )),
               );
             },

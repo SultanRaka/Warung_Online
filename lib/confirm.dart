@@ -7,11 +7,18 @@ class Confirm extends StatelessWidget {
   final orderItem;
   final orderQuantity;
   final total;
+  final orderItemID;
+  final orderItemStock;
   TextEditingController nama = new TextEditingController();
   TextEditingController alamat = new TextEditingController();
   String detil = "";
 
-  Confirm({this.orderItem, this.total, this.orderQuantity});
+  Confirm(
+      {this.orderItem,
+      this.total,
+      this.orderQuantity,
+      this.orderItemID,
+      this.orderItemStock});
 
   void addData() {
     var url = "http://10.0.2.2/warung_makan/post2.php";
@@ -24,11 +31,24 @@ class Confirm extends StatelessWidget {
     });
   }
 
+  void reduceStock(String idPesanan, String stokBaru) {
+    var url = "http://10.0.2.2/warung_makan/edit_customer.php";
+
+    http.post(Uri.parse(url), body: {
+      "id": idPesanan,
+      "stok": stokBaru,
+    });
+  }
+
   cetakCetak() {
     int x = 0;
     while (x < this.orderItem.length) {
       this.detil =
           this.detil + ("${this.orderItem[x]} ${this.orderQuantity[x]} pcs \n");
+      reduceStock(
+          this.orderItemID[x].toString(), this.orderItemStock[x].toString());
+      print(this.orderItemID[x]);
+      print(this.orderItemStock[x]);
       x++;
     }
   }
