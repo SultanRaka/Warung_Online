@@ -83,7 +83,7 @@ class _MenuState extends State<Menu> {
         orderedMenu.add(menu[4]["nama"].toString());
         orderedQuantity.add(number[4]);
         int stoklama = int.parse(menu[4]["stock"]);
-        int jumlahpesanan = number[04];
+        int jumlahpesanan = number[4];
         int stokBaru = stoklama - jumlahpesanan;
         newStock.add(stokBaru);
         orderedID.add(menu[4]["id"].toString());
